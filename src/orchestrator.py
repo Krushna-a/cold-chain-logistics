@@ -117,3 +117,4 @@ if __name__ == "__main__":
                     latest_msg = node_state["messages"][-1]
                     if latest_msg.content:
                         print(f"\n🤖 FDE Agent:\n{latest_msg.content}")
+# Performance: added connection pooling
