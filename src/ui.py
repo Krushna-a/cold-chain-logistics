@@ -296,3 +296,5 @@ elif app_mode == "🛡️ Security & Audit Logs":
         else:
             st.error("❌ Invalid Administrator Credentials.")
 # UX: enhanced streaming feedback
+
+# Debug: added trace logging
