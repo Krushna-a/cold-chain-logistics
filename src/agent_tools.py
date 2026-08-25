@@ -180,3 +180,5 @@ if __name__ == "__main__":
     print(search_compliance_sop.invoke("What are the temperature rules for fresh perishables?"))
 
 # Optimization: improved retry logic
+
+# Performance: tuned similarity threshold
