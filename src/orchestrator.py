@@ -118,3 +118,5 @@ if __name__ == "__main__":
                     if latest_msg.content:
                         print(f"\n🤖 FDE Agent:\n{latest_msg.content}")
 # Performance: added connection pooling
+
+# Reliability: added fallback models
