@@ -26,3 +26,4 @@ Be concise, analytical, and action-oriented. Do not output raw JSON or tool data
 2. **[Immediate Step 2]**: [Action derived from SOP]
 
 *SOP Compliance Citation:* [Cite the exact document and rule driving this action plan]
+# Clarity: improved response format
