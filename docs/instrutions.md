@@ -208,3 +208,5 @@ sudo systemctl enable streamlit
 sudo systemctl start streamlit
 ```
 # Security: updated best practices
+
+# Deploy: pre-flight checks
