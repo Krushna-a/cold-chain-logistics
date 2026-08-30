@@ -372,3 +372,5 @@ This project is built as a portfolio demonstration. Feel free to reference the a
 [⭐ Star this repo](https://github.com/yourusername/cold-chain-logistics-FDE-Project) if you find it useful!
 
 </div>
+
+# Final: recruiter-friendly updates
