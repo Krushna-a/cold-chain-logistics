@@ -10,6 +10,7 @@
 ---
 
 ## 📋 Table of Contents
+
 - [Overview](#-overview)
 - [Key Features](#-key-features)
 - [Architecture](#-architecture)
@@ -27,6 +28,7 @@
 This project addresses a critical challenge in modern supply chain management: **real-time decision-making for cold-chain logistics**. When temperature-sensitive cargo experiences anomalies during transit, every minute counts. Traditional systems require manual data correlation across multiple sources—this AI assistant does it automatically.
 
 **The Problem:**
+
 - Dispatchers juggle between legacy SQL databases, weather APIs, and compliance documents
 - Critical temperature breaches can lead to thousands of dollars in spoiled cargo
 - Route diversions require instant access to SOPs buried in PDF files
@@ -39,26 +41,31 @@ An intelligent agent that converses naturally with logistics teams, automaticall
 ## ✨ Key Features
 
 ### 🤖 **Intelligent Multi-Tool Orchestration**
+
 - **LangGraph-powered reasoning engine** that autonomously selects and chains tools
 - Supports DeepSeek R1, OpenAI GPT-4o, and local Ollama models
 - Maintains conversation context across complex multi-turn queries
 
 ### 📊 **Real-Time Data Integration**
+
 - **SQL database queries** against Microsoft SQL Server with role-based access control
 - **Live weather API integration** (Open-Meteo) for corridor condition analysis
 - **Vector similarity search** using Pinecone for instant SOP retrieval
 
 ### 🔐 **Enterprise-Grade Security**
+
 - Row-level security with dedicated read-only agent user (`USR_FDE_RO`)
 - Audit logging for every agent action and tool invocation
 - Separation of concerns: agents can't access raw legacy tables
 
 ### 🎨 **Production-Ready UI**
+
 - Built with **Streamlit** for rapid prototyping and deployment
 - Real-time streaming of agent reasoning process
 - Dual-mode interface: Dispatch Console + Security Audit Viewer
 
 ### 📈 **Data Engineering Pipeline**
+
 - Automated ingestion from CSV to SQL Server with legacy schema mapping
 - Incremental SOP processing with MD5-based change detection
 - Support for Markdown, PDF, CSV, and Excel document parsing
@@ -67,7 +74,7 @@ An intelligent agent that converses naturally with logistics teams, automaticall
 
 ## 🏗️ Architecture
 
-```
+```ini
 ┌─────────────────────────────────────────────────────────────┐
 │                     STREAMLIT UI LAYER                      │
 │  • Multi-session management  • Real-time streaming         │
@@ -112,22 +119,26 @@ An intelligent agent that converses naturally with logistics teams, automaticall
 ## 🛠️ Tech Stack
 
 ### **Core Frameworks**
+
 - **LangGraph** - Agent workflow orchestration with state management
 - **LangChain** - LLM abstraction and tool integration
 - **Streamlit** - Interactive web application framework
 
 ### **AI & ML**
+
 - **DeepSeek R1** / **OpenAI GPT-4o** - Primary reasoning models
 - **OpenAI Embeddings** / **HuggingFace BGE-M3** - Vector embedding generation
 - **Pinecone** - Serverless vector database for semantic search
 
 ### **Data Infrastructure**
+
 - **Microsoft SQL Server 2022** - Production database (Docker)
 - **SQLAlchemy** - Python SQL toolkit and ORM
 - **PyODBC** - ODBC database connectivity
 - **Pandas** - Data manipulation and CSV processing
 
 ### **Additional Technologies**
+
 - **PyPDF** - PDF document parsing
 - **python-dotenv** - Environment configuration management
 - **scikit-learn** - Machine learning utilities
@@ -137,26 +148,28 @@ An intelligent agent that converses naturally with logistics teams, automaticall
 ## 🖼️ Demo & Screenshots
 
 ### Dispatch Console Interface
+
 The main interface where logistics teams interact with the AI assistant. The agent automatically:
+
 1. Queries the SQL database for nearby shipments
 2. Checks live weather conditions at the location
 3. Retrieves relevant SOP procedures
 4. Synthesizes a actionable report with temperature breach protocols
 
 **Sample Query:**
-```
+
+```csv
 "Find any active shipments near Los Angeles (Lat ~33.8, Lon ~-118.1). 
 Check the local weather there, and tell me if the current cargo 
 temperature violates the SOP for fresh perishables."
 ```
 
 **Agent Response Structure:**
+
 ```markdown
-### 1. Executive Summary
 * 3 active shipments detected within 50km radius
 * 2 vehicles showing temperature readings above SOP threshold
 
-### 2. Telemetry & Environment Analysis
 | Location | Current Temp | Cargo Risk | Weather |
 |----------|-------------|------------|---------|
 | 33.77, -118.19 | 5.2°C | High | 14°C, Wind 22 km/h |
@@ -164,7 +177,6 @@ temperature violates the SOP for fresh perishables."
 *Analysis:* External temperatures are within normal range, but 
 internal cargo sensors indicate cooling system malfunction.
 
-### 3. Required Action Plan
 1. **Immediate Driver Contact**: Restart auxiliary cooling unit
 2. **Divert if ETA > 1 hour**: Route to nearest cold-storage facility
 
@@ -172,7 +184,9 @@ internal cargo sensors indicate cooling system malfunction.
 ```
 
 ### Security Audit Dashboard
+
 Administrators can review every agent interaction with full transparency:
+
 - Session tracking by unique thread ID
 - Tool invocation logs with complete input/output payloads
 - Timestamp-based filtering for compliance audits
@@ -182,18 +196,21 @@ Administrators can review every agent interaction with full transparency:
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Python 3.12+
 - Docker (for SQL Server)
 - Microsoft ODBC Driver 18 for SQL Server
 - API Keys: Pinecone, OpenAI/DeepSeek (optional)
 
 ### 1. Clone Repository
+
 ```bash
 git clone https://github.com/yourusername/cold-chain-logistics-FDE-Project.git
 cd cold-chain-logistics-FDE-Project
 ```
 
 ### 2. Environment Setup
+
 ```bash
 # Create virtual environment
 python -m venv venv
@@ -209,6 +226,7 @@ pip install -r requirements.txt
 ```
 
 ### 3. Configure Environment Variables
+
 Create a `.env` file in the project root:
 
 ```env
@@ -232,6 +250,7 @@ OPENAI_API_KEY=your_openai_api_key      # If using OpenAI
 ```
 
 ### 4. Launch SQL Server (Docker)
+
 ```bash
 docker run -e "ACCEPT_EULA=Y" ^
   -e "MSSQL_SA_PASSWORD=FdeEnterprisePass123!" ^
@@ -240,19 +259,23 @@ docker run -e "ACCEPT_EULA=Y" ^
 ```
 
 ### 5. Ingest Legacy Data
+
 ```bash
 python scripts\ingest_legacy_data.py
 ```
 
 ### 6. Setup Security & Views
+
 Execute `scripts\setup_security_and_view.sql` using Azure Data Studio or VS Code SQL extension.
 
 ### 7. Ingest SOP Documents
+
 ```bash
 python scripts\ingest_sop_pinecone.py
 ```
 
 ### 8. Launch Application
+
 ```bash
 streamlit run src\ui.py
 ```
@@ -263,7 +286,7 @@ Access the application at `http://localhost:8501`
 
 ## 📁 Project Structure
 
-```
+```ini
 cold-chain-logistics-FDE-Project/
 │
 ├── data/
@@ -300,18 +323,22 @@ cold-chain-logistics-FDE-Project/
 ## 🔐 Security & Compliance
 
 ### Role-Based Access Control (RBAC)
+
 - **Admin User (`sa`)**: Full database access, schema modifications
-- **Agent User (`USR_FDE_RO`)**: Read-only access to cleaned views, write access to audit table
+- __Agent User (`USR_FDE_RO`)__: Read-only access to cleaned views, write access to audit table
 - **Legacy Tables**: Direct access blocked for agent to prevent data exposure
 
 ### Audit Trail
+
 Every agent interaction is logged to `FDE_VIEWS.AgentAuditLog`:
+
 - Session ID tracking
 - Tool invocation timestamps
 - Complete input/output payloads
 - Node execution paths
 
 ### Data Privacy
+
 - No raw legacy table access for AI agents
 - SQL injection protection via parameterized queries
 - Environment-based credential management (no hardcoded secrets)
@@ -338,39 +365,3 @@ Building this project taught me:
 - [ ] **Mobile Companion App**: Driver interface for incident reporting
 - [ ] **Kubernetes Deployment**: Container orchestration for horizontal scaling
 - [ ] **GraphQL API Layer**: Expose agent capabilities to third-party systems
-
----
-
-## 📝 License
-
-This project is built as a portfolio demonstration. Feel free to reference the architecture and implementation patterns for educational purposes.
-
----
-
-## 🤝 Contact
-
-**Project Author**: [Your Name]  
-**Email**: your.email@example.com  
-**LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)  
-**Portfolio**: [yourportfolio.com](https://yourportfolio.com)
-
----
-
-## 🙏 Acknowledgments
-
-- **DeepSeek** for providing cutting-edge reasoning models
-- **LangChain Team** for the incredible agent framework ecosystem
-- **Open-Meteo** for free weather API access
-- **Pinecone** for serverless vector database infrastructure
-
----
-
-<div align="center">
-
-**Built with ❤️ and ☕ for the future of autonomous logistics**
-
-[⭐ Star this repo](https://github.com/yourusername/cold-chain-logistics-FDE-Project) if you find it useful!
-
-</div>
-
-# Final: recruiter-friendly updates
